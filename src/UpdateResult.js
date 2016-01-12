@@ -7,5 +7,5 @@ export const UpdateResult = Type({
   WithEffects: [T, T]
 });
 
-export const pure         = v => UpdateResult.Pure(v);
-export const withEffects  = (v,ef) => UpdateResult.WithEffects(v, ef);
+export const pure        = v      => UpdateResult.Pure(v);
+export const withEffects = (v,ef) => UpdateResult.WithEffects(v, ef);
