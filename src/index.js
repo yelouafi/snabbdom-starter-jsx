@@ -8,16 +8,16 @@ import style from 'snabbdom/modules/style';
 import eventListeners from 'snabbdom/modules/eventListeners';
 import { UpdateResult } from './UpdateResult.js';
 
-export default function(App, appRootElement) {
+export default function(RootComponent, domElement) {
     const patch = snabbdom.init([
       clazz, props, style, eventListeners
     ]);
 
     let state,
-        vnode = appRootElement;
+        vnode = domElement;
 
     function updateUI() {
-      const newVnode = <App state={state} dispatch={dispatch} />;
+      const newVnode = <RootComponent state={state} dispatch={dispatch} />;
       vnode = patch(vnode, newVnode);
     }
 
@@ -28,7 +28,7 @@ export default function(App, appRootElement) {
 
     function updateStateWithEffect(newState, effect) {
       updateStatePure(newState);
-      App.execute(state, effect, dispatch);
+      RootComponent.execute(state, effect, dispatch);
     }
 
     function handleUpdateResult(updateResult) {
@@ -39,9 +39,9 @@ export default function(App, appRootElement) {
     }
 
     function dispatch(action) {
-      const updateResult = App.update(state, action);
+      const updateResult = RootComponent.update(state, action);
       handleUpdateResult(updateResult);
     }
 
-    handleUpdateResult(App.init());
+    handleUpdateResult(RootComponent.init());
 }
