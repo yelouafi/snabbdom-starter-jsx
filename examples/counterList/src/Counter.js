@@ -2,7 +2,7 @@
 
 import { html } from 'snabbdom-jsx';
 import Type from 'union-type';
-import { pure, withEffects } from './UpdateResult';
+import { pure, withEffects } from '../../../src/UpdateResult.js'
 
 const Action = Type({
   Increment      : [],

@@ -3,7 +3,7 @@
 import { html } from 'snabbdom-jsx';
 import Counter from './Counter';
 import Type from 'union-type';
-import {  UpdateResult, pure, withEffects } from './UpdateResult';
+import { UpdateResult, pure, withEffects } from '../../../src/UpdateResult.js'
 
 const Action = Type({
   Add     : [],
