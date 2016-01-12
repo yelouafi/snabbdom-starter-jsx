@@ -43,5 +43,13 @@ export default function(RootComponent, domElement) {
       handleUpdateResult(updateResult);
     }
 
+    function mapDispatcher(context) {
+      const newDisp = action => this(context(action));
+      newDisp.map = mapDispatcher;
+      return newDisp;
+    }
+
+    dispatch.map = mapDispatcher;
+
     handleUpdateResult(RootComponent.init());
 }
