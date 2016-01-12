@@ -2,18 +2,18 @@
 
 import { html } from 'snabbdom-jsx';
 import snabbdom from 'snabbdom';
+import clazz from 'snabbdom/modules/class';
+import props from 'snabbdom/modules/props';
+import style from 'snabbdom/modules/style';
+import eventListeners from 'snabbdom/modules/eventListeners';
 import { UpdateResult } from './updateResult';
 import App from './Counter';
 
 const patch = snabbdom.init([
-  require('snabbdom/modules/class'),
-  require('snabbdom/modules/props'),
-  require('snabbdom/modules/style'),
-  require('snabbdom/modules/eventListeners')
+  clazz, props, style, eventListeners
 ]);
 
-
-var state,
+let state,
     vnode = document.getElementById('placeholder');
 
 function updateUI() {
@@ -38,7 +38,7 @@ function handleUpdateResult(updateResult) {
   }, updateResult);
 }
 
-export function dispatch(action) {
+function dispatch(action) {
   const updateResult = App.update(state, action);
   handleUpdateResult(updateResult);
 }
